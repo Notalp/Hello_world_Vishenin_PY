@@ -1,3 +1,0 @@
-UPDATE prices
-SET price = price * 1.05
-WHERE product_id <= 5 AND price < 10000;
