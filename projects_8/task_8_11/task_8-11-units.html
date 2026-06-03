@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Эксперимент с единицами измерения CSS — px, em, rem, %, vw</title>
+  <meta name="description" content="Демонстрация различий между единицами измерения: px, em, rem, %, vw">
+  <meta name="author" content="Платон Янович">
+  
+  <style>
+    /* ========================================== */
+    /* Базовые стили для эксперимента              */
+    /* ========================================== */
+    
+    /* Устанавливаем базовый размер шрифта для html (влияет на rem) */
+    html {
+      font-size: 20px;  /* 1rem = 20px (по умолчанию было 16px) */
+    }
+    
+    /* Настраиваем body — фон и отступы */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      padding: 40px 20px;
+      margin: 0;
+      line-height: 1.6;
+    }
+    
+    /* Контейнер для блоков */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    
+    /* Заголовок эксперимента */
+    h1 {
+      color: #1a73e8;
+      text-align: center;
+      border-bottom: 3px solid #ffd700;
+      padding-bottom: 10px;
+    }
+    
+    .subtitle {
+      text-align: center;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    
+    /* Инструкция для эксперимента */
+    .instruction {
+      background: #e8f0fe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      border-left: 4px solid #1a73e8;
+    }
+    
+    .instruction h3 {
+      margin-top: 0;
+      color: #1a73e8;
+    }
+    
+    .instruction ul {
+      margin-bottom: 0;
+    }
+    
+    .instruction code {
+      background: #333;
+      color: #ffd700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    
+    /* ========================================== */
+    /* ОБЩИЙ СТИЛЬ ДЛЯ ВСЕХ БЛОКОВ .box           */
+    /* ========================================== */
+    .box {
+      border: 1px solid #4caf50;   /* зелёная рамка */
+      padding: 12px;               /* внутренние отступы */
+      margin-bottom: 10px;         /* отступ между блоками */
+      background: #fafaf7;         /* светлый фон */
+      border-radius: 8px;          /* скруглённые углы */
+      box-sizing: border-box;      /* чтобы padding не добавлялся к ширине */
+    }
+    
+    /* ========================================== */
+    /* РАЗНЫЕ ЕДИНИЦЫ ИЗМЕРЕНИЯ ДЛЯ ШИРИНЫ         */
+    /* ========================================== */
+    
+    /* Блок 1: фиксированная ширина в пикселях */
+    .size-px {
+      width: 200px;
+    }
+    
+    /* Блок 2: ширина в em (относительно font-size родителя .container) */
+    .size-em {
+      width: 15em;  /* 15 × font-size родителя (по умолчанию 20px? зависит) */
+    }
+    
+    /* Блок 3: ширина в rem (относительно font-size html) */
+    .size-rem {
+      width: 12rem;  /* 12 × font-size html (html { font-size: 20px; } → 12×20 = 240px) */
+    }
+    
+    /* Блок 4: ширина в процентах (относительно родителя .container) */
+    .size-percent {
+      width: 50%;  /* половина ширины родительского контейнера */
+    }
+    
+    /* Блок 5: ширина в viewport width (относительно ширины окна браузера) */
+    .size-vw {
+      width: 30vw;  /* 30% от ширины окна браузера */
+    }
+    
+    /* Дополнительная стилизация для наглядности — подпись к блокам */
+    .box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .box .unit-badge {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #4caf50;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 20px;
+    }
+    
+    /* Стили для описания эксперимента */
+    .results {
+      margin-top: 30px;
+      padding: 20px;
+      background: #e8f5e9;
+      border-radius: 12px;
+    }
+    
+    .results h3 {
+      margin-top: 0;
+      color: #2e7d32;
+    }
+    
+    .results ul {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📏 Эксперимент с единицами измерения CSS</h1>
+    <p class="subtitle">px · em · rem · % · vw — наблюдаем разницу при изменении окна и шрифта</p>
+
+    <div class="instruction">
+      <h3>🧪 Инструкция для эксперимента</h3>
+      <ul>
+        <li><strong>📐 Часть 1:</strong> Изменяйте ширину окна браузера (увеличивайте/уменьшайте). Наблюдайте за блоками:
+          <ul>
+            <li>🔹 <code>.size-px</code> — <strong>НЕ меняет</strong> ширину (фиксированная 200px)</li>
+            <li>🔹 <code>.size-em</code> — зависит от шрифта родителя (сейчас не меняется при ресайзе)</li>
+            <li>🔹 <code>.size-rem</code> — зависит от шрифта html (не меняется при ресайзе)</li>
+            <li>🔹 <code>.size-percent</code> — <strong>меняется</strong> (50% от родителя)</li>
+            <li>🔹 <code>.size-vw</code> — <strong>меняется</strong> (30% от ширины окна)</li>
+          </ul>
+        </li>
+        <li><strong>📝 Часть 2:</strong> В <code>&lt;style&gt;</code> найдите <code>html { font-size: 20px; }</code> и измените значение на <code>16px</code> или <code>32px</code>. Обновите страницу:
+          <ul>
+            <li>🔹 Блок с <code>rem</code> изменит размер (12 × новый шрифт)</li>
+            <li>🔹 Блок с <code>px</code> останется 200px</li>
+            <li>🔹 Блок с <code>em</code> тоже изменится (если изменится шрифт .container)</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 5 БЛОКОВ с разными единицами измерения      -->
+    <!-- ========================================== -->
+
+    <!-- Блок 1: px (пиксели) — абсолютная единица -->
+    <div class="box size-px">
+      <span><strong>🔹 Блок 1</strong> — <code>width: 200px</code></span>
+      <span class="unit-badge">px</span>
+    </div>
+
+    <!-- Блок 2: em (относительно font-size родителя) -->
+    <div class="box size-em">
+      <span><strong>🔸 Блок 2</strong> — <code>width: 15em</code></span>
+      <span class="unit-badge">em</span>
+    </div>
+
+    <!-- Блок 3: rem (относительно font-size html) -->
+    <div class="box size-rem">
+      <span><strong>🔹 Блок 3</strong> — <code>width: 12rem</code></span>
+      <span class="unit-badge">rem</span>
+    </div>
+
+    <!-- Блок 4: % (проценты от родителя) -->
+    <div class="box size-percent">
+      <span><strong>🔸 Блок 4</strong> — <code>width: 50%</code></span>
+      <span class="unit-badge">%</span>
+    </div>
+
+    <!-- Блок 5: vw (viewport width) -->
+    <div class="box size-vw">
+      <span><strong>🔹 Блок 5</strong> — <code>width: 30vw</code></span>
+      <span class="unit-badge">vw</span>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- РЕЗУЛЬТАТЫ ЭКСПЕРИМЕНТА                    -->
+    <!-- ========================================== -->
+    <div class="results">
+      <h3>📊 Результаты эксперимента</h3>
+      <ul>
+        <li><strong>🟢 px (пиксели)</strong> — абсолютная единица. Блок <strong>НЕ МЕНЯЕТСЯ</strong> ни при ресайзе окна, ни при изменении шрифта.</li>
+        <li><strong>🟡 em</strong> — относительная единица. Зависит от <code>font-size</code> <strong>родительского элемента</strong> (.container). Если изменить шрифт родителя — блок изменит ширину.</li>
+        <li><strong>🟢 rem</strong> — относительная единица. Зависит от <code>font-size</code> корневого элемента <code>&lt;html&gt;</code>. Сейчас <code>html { font-size: 20px; }</code>, поэтому 12rem = 240px.</li>
+        <li><strong>🔵 % (проценты)</strong> — относительно <strong>родительского контейнера</strong> (.container). При ресайзе окна меняется ширина родителя → меняется и блок.</li>
+        <li><strong>🟣 vw (viewport width)</strong> — относительно <strong>ширины окна браузера</strong>. 30vw = 30% от ширины экрана. При ресайзе окна блок меняет размер синхронно.</li>
+      </ul>
+      <p style="margin-top: 15px; margin-bottom: 0;">
+        💡 <strong>Попробуйте сами:</strong> Измените значение <code>html { font-size: 20px; }</code> на 16px или 32px — блоки с <strong>rem</strong> и <strong>em</strong> изменят размер, а <strong>px</strong> — нет!
+      </p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Карточки задач — классы priority и featured</title>
+  <meta name="description" content="Пример использования классов CSS: карточки с разными приоритетами и выделенная featured-карточка">
+  <meta name="author" content="Платон Янович">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      padding: 40px 20px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2c3e50;
+      border-bottom: 3px solid #ffd700;
+      display: inline-block;
+      width: 100%;
+      padding-bottom: 10px;
+    }
+
+    /* Сетка для карточек */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 1: .card — общий стиль */
+    /* ========================================== */
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-left: 4px solid #ddd; /* базовая полоса (перекроется priority-классами) */
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      color: #2c3e50;
+      font-size: 1.25rem;
+    }
+
+    .card p {
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 2: .priority-high — красная левая полоса */
+    /* ========================================== */
+    .priority-high {
+      border-left: 4px solid #e74c3c;
+      background: #fff5f5;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 3: .priority-medium — оранжевая левая полоса */
+    /* ========================================== */
+    .priority-medium {
+      border-left: 4px solid #f39c12;
+      background: #fffaf0;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 4: .priority-low — зелёная левая полоса */
+    /* ========================================== */
+    .priority-low {
+      border-left: 4px solid #27ae60;
+      background: #f0fff4;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 5: .featured — лёгкая тень */
+    /* ========================================== */
+    .featured {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transform: scale(1.01);
+      border: 1px solid #ffd700;
+    }
+
+    /* Декоративный badge для featured */
+    .featured-badge {
+      display: inline-block;
+      background: #ffd700;
+      color: #2c3e50;
+      font-size: 0.7rem;
+      font-weight: bold;
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      color: #777;
+      border-top: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📋 Список задач</h1>
+    <p style="text-align: center; margin-bottom: 20px; color: #555;">
+      Карточки с разным приоритетом: 
+      <span style="color:#e74c3c">🔴 высокий</span> · 
+      <span style="color:#f39c12">🟠 средний</span> · 
+      <span style="color:#27ae60">🟢 низкий</span>
+    </p>
+
+    <div class="cards-grid">
+      <!-- ========================================== -->
+      <!-- priority-high: 2 карточки                    -->
+      <!-- ========================================== -->
+
+      <!-- Карточка 1: priority-high (без featured) -->
+      <div class="card priority-high">
+        <h3>🚨 Исправить критический баг</h3>
+        <p>Неправильно работает форма регистрации: пользователи не получают письмо с подтверждением. Нужно исправить до конца дня.</p>
+      </div>
+
+      <!-- Карточка 2: priority-high + featured (оба класса!) -->
+      <div class="card priority-high featured">
+        <h3>⭐ Запуск нового релиза <span class="featured-badge">Избранное</span></h3>
+        <p>Выкатка версии 2.0 на прод. Проверить все интеграции, обновить документацию и уведомить команду.</p>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- priority-medium: 2 карточки                 -->
+      <!-- ========================================== -->
+
+      <!-- Карточка 3: priority-medium -->
+      <div class="card priority-medium">
+        <h3>📝 Дописать документацию</h3>
+        <p>Обновить README.md, добавить примеры использования API и инструкцию по развёртыванию проекта.</p>
+      </div>
+
+      <!-- Карточка 4: priority-medium -->
+      <div class="card priority-medium">
+        <h3>🎨 Рефакторинг стилей</h3>
+        <p>Привести CSS в порядок: вынести повторяющиеся стили в общие классы, удалить неиспользуемый код.</p>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- priority-low: 2 карточки                    -->
+      <!-- ========================================== -->
+
+      <!-- Карточка 5: priority-low -->
+      <div class="card priority-low">
+        <h3>💡 Идеи для блога</h3>
+        <p>Составить список тем для технических статей: разбор новых фич CSS, обзор инструментов разработчика.</p>
+      </div>
+
+      <!-- Карточка 6: priority-low -->
+      <div class="card priority-low">
+        <h3>🎯 Планы на обучение</h3>
+        <p>Изучить React и TypeScript, пройти курс по алгоритмам. Составить roadmap на следующий месяц.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Демонстрация работы классов: <code>.card</code> (общий стиль) + <code>.priority-*</code> (цветная полоса) + <code>.featured</code> (тень)</p>
+    <p><strong>⭐ Карточка с классами <code>priority-high featured</code> получила оба набора стилей: красную полосу и тень.</strong></p>
+  </footer>
+</body>
+</html>

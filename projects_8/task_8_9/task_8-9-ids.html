@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Одностраничник — якоря и id</title>
+  <meta name="description" content="Пример использования id для якорных ссылок и CSS-стилизации">
+  <meta name="author" content="Платон Янович">
+  <style>
+    /* Общие стили для страницы */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* Стили для навигации */
+    nav {
+      background: #2c3e50;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    nav a:hover {
+      background: #ffd700;
+      color: #2c3e50;
+    }
+
+    /* Общие стили для секций */
+    section {
+      margin: 0;
+      padding: 60px 20px;
+      min-height: 100vh;
+      scroll-margin-top: 70px; /* Чтобы при прокрутке секция не пряталась под sticky nav */
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border-bottom: 3px solid #ffd700;
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+
+    section p {
+      max-width: 800px;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+
+    /* ========================================== */
+    /* СТИЛИ ПО ID — каждая секция свой фон        */
+    /* ========================================== */
+
+    #about {
+      background: #e0eaff;  /* Светло-голубой */
+    }
+
+    #projects {
+      background: #e0f5e0;  /* Светло-зелёный */
+    }
+
+    #contacts {
+      background: #ffe0e0;  /* Светло-розовый */
+    }
+
+    /* Дополнительный стиль для подвала */
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: #ffd700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- НАВИГАЦИЯ с якорными ссылками на id -->
+  <nav aria-label="Основное меню">
+    <ul>
+      <li><a href="#about">📖 Обо мне</a></li>
+      <li><a href="#projects">📁 Проекты</a></li>
+      <li><a href="#contacts">📞 Контакты</a></li>
+    </ul>
+  </nav>
+
+  <!-- РАЗДЕЛ 1: id="about" -->
+  <section id="about">
+    <h2>📖 Обо мне</h2>
+    <p>Привет! Меня зовут Платон Янович. Я студент Санкт-Петербургского политехнического университета, увлекаюсь веб-разработкой. Начал изучать HTML, CSS и JavaScript в 2024 году. В свободное время люблю читать техническую литературу и делать пет-проекты.</p>
+    <p>Эта страница — пример использования <strong>id</strong> для якорных ссылок и CSS-стилизации. Каждый раздел имеет свой уникальный идентификатор, который используется и в меню, и в стилях.</p>
+  </section>
+
+  <!-- РАЗДЕЛ 2: id="projects" -->
+  <section id="projects">
+    <h2>📁 Проекты</h2>
+    <p>За время учёбы я создал несколько учебных проектов: сайт-визитку, страницу со списками покупок, фотогалерею с lazy loading, а также страницу-эксперимент по CLS (Cumulative Layout Shift). Каждый проект помог мне лучше понять HTML и основы веб-разработки.</p>
+    <p>В планах — освоить фреймворки (React или Vue) и создать полноценное веб-приложение с бэкендом на Python/Flask.</p>
+  </section>
+
+  <!-- РАЗДЕЛ 3: id="contacts" -->
+  <section id="contacts">
+    <h2>📞 Контакты</h2>
+    <p>Вы можете связаться со мной по электронной почте или через социальные сети. Я всегда открыт к общению, сотрудничеству и интересным предложениям!</p>
+    <p>📧 Email: <a href="mailto:platon@example.com">platon@example.com</a><br>
+    💬 Telegram: <a href="https://t.me/platon" target="_blank" rel="noopener noreferrer">@platon</a><br>
+    🐙 GitHub: <a href="https://github.com/platon" target="_blank" rel="noopener noreferrer">github.com/platon</a></p>
+  </section>
+
+  <!-- ПОДВАЛ (необязательно, но для завершённости) -->
+  <footer>
+    <p>© 2026 Платон Янович — демонстрация работы <code>id</code>, якорей и CSS-стилизации</p>
+    <p><a href="#">🔝 Наверх</a></p>
+  </footer>
+
+</body>
+</html>

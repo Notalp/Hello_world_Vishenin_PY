@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Псевдоклассы CSS — практика</title>
+  <meta name="description" content="Демонстрация псевдоклассов: first-child, last-child, nth-child, hover, focus, required, not">
+  <meta name="author" content="Платон Янович">
+  
+  <style>
+    /* ========================================== */
+    /* Базовые стили страницы                      */
+    /* ========================================== */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      background: #f5f7fa;
+      line-height: 1.6;
+      color: #2c3e50;
+    }
+
+    h1 {
+      color: #1a73e8;
+      text-align: center;
+      border-bottom: 3px solid #ffd700;
+      padding-bottom: 10px;
+    }
+
+    h2 {
+      color: #2e7d32;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      border-left: 4px solid #4caf50;
+      padding-left: 15px;
+    }
+
+    .instruction {
+      background: #e8f0fe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+
+    .instruction code {
+      background: #333;
+      color: #ffd700;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* Общие стили для списка */
+    ol {
+      background: white;
+      padding: 20px 20px 20px 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    li {
+      padding: 8px 5px;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 1: li:first-child — первый пункт   */
+    /* ========================================== */
+    li:first-child {
+      background: #e8f0fe;
+      color: #1a73e8;
+      font-weight: bold;
+      border-radius: 8px 8px 0 0;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 2: li:last-child — последний пункт */
+    /* ========================================== */
+    li:last-child {
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-weight: bold;
+      border-radius: 0 0 8px 8px;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 3: li:nth-child(3n) — каждый третий пункт */
+    /* ========================================== */
+    li:nth-child(3n) {
+      background: #fff8e1;
+      font-style: italic;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 4: :not — разделители кроме первого */
+    /* ========================================== */
+    li:not(:first-child) {
+      border-top: 1px solid #ddd;
+    }
+
+    /* ========================================== */
+    /* Стили для таблицы                           */
+    /* ========================================== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    th {
+      background: #2c3e50;
+      color: white;
+      padding: 12px;
+      text-align: left;
+    }
+
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 5: tr:nth-child(even) — чётные строки таблицы */
+    /* ========================================== */
+    tr:nth-child(even) {
+      background: #f0f2f5;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 6: a:hover — реакция ссылок на наведение */
+    /* ========================================== */
+    a {
+      color: #1a73e8;
+      text-decoration: none;
+      padding: 4px 6px;
+      border-radius: 4px;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    a:hover {
+      background: #1a73e8;
+      color: white;
+      transform: scale(1.02);
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 7: a[href$=".pdf"] — PDF-ссылки красным */
+    /* ========================================== */
+    a[href$=".pdf"] {
+      color: #d32f2f;
+      font-weight: bold;
+    }
+
+    a[href$=".pdf"]:hover {
+      background: #d32f2f;
+      color: white;
+    }
+
+    /* ========================================== */
+    /* Стили для формы                             */
+    /* ========================================== */
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 8: input:focus — подсветка фокуса  */
+    /* ========================================== */
+    input:focus {
+      border-color: #1a73e8;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(26,115,232,0.2);
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 9: input:required — выделить обязательные поля */
+    /* ========================================== */
+    input:required {
+      border-left: 4px solid #ff9800;
+      background: #fff8e1;
+    }
+
+    button {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #2e7d32;
+    }
+
+    hr {
+      margin: 30px 0;
+    }
+
+    .links-list {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .links-list p {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎭 Псевдоклассы CSS</h1>
+
+  <div class="instruction">
+    <p><strong>🔍 Что проверяем:</strong></p>
+    <ul>
+      <li><code>li:first-child</code> — первый пункт списка (синий фон)</li>
+      <li><code>li:last-child</code> — последний пункт (зелёный фон)</li>
+      <li><code>li:nth-child(3n)</code> — каждый третий пункт (жёлтый фон, курсив)</li>
+      <li><code>li:not(:first-child)</code> — разделители между пунктами (кроме первого)</li>
+      <li><code>tr:nth-child(even)</code> — чётные строки таблицы (серый фон)</li>
+      <li><code>a:hover</code> — наведи на любую ссылку</li>
+      <li><code>input:focus</code> — кликни в поле ввода</li>
+      <li><code>input:required</code> — обязательное поле (оранжевая полоса слева)</li>
+      <li><code>a[href$=".pdf"]</code> — PDF-ссылка красная</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- ========================================== -->
+  <!-- ЧАСТЬ 1: Нумерованный список с 6+ пунктами -->
+  <!-- ========================================== -->
+  <h2>📋 Список задач (6 пунктов)</h2>
+  <ol>
+    <li>🔹 Первый пункт — <strong>:first-child</strong> (синий фон)</li>
+    <li>🔸 Второй пункт — обычный</li>
+    <li>🔹 Третий пункт — <strong>:nth-child(3n)</strong> (жёлтый фон, курсив)</li>
+    <li>🔸 Четвёртый пункт — обычный</li>
+    <li>🔹 Пятый пункт — обычный</li>
+    <li>🔸 Шестой пункт — <strong>:last-child</strong> (зелёный фон)</li>
+  </ol>
+
+  <hr>
+
+  <!-- ========================================== -->
+  <!-- ЧАСТЬ 2: Таблица (минимум 5 строк)         -->
+  <!-- ========================================== -->
+  <h2>📊 Таблица сотрудников</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Должность</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Анна</td><td>Разработчик</td></tr>
+      <tr><td>2</td><td>Иван</td><td>Дизайнер</td></tr>
+      <tr><td>3</td><td>Мария</td><td>Тестировщик</td></tr>
+      <tr><td>4</td><td>Пётр</td><td>Менеджер</td></tr>
+      <tr><td>5</td><td>Елена</td><td>Аналитик</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size: 0.85rem; margin-top: 8px;">✨ <strong>tr:nth-child(even)</strong> — чётные строки (2, 4) имеют серый фон</p>
+
+  <hr>
+
+  <!-- ========================================== -->
+  <!-- ЧАСТЬ 3: Ссылки (внутренняя, внешняя, PDF) -->
+  <!-- ========================================== -->
+  <h2>🔗 Разные ссылки</h2>
+  <div class="links-list">
+    <p>📁 <a href="about.html">Внутренняя ссылка (about.html)</a> — обычная синяя</p>
+    <p>🌐 <a href="https://stepik.org" target="_blank" rel="noopener noreferrer">Внешняя ссылка (stepik.org)</a> — синяя, но при наведении меняет цвет</p>
+    <p>📄 <a href="document.pdf">PDF-документ (document.pdf)</a> — <strong>красная ссылка</strong> благодаря <code>a[href$=".pdf"]</code></p>
+  </div>
+  <p style="font-size: 0.85rem;">✨ <strong>a:hover</strong> — наведи на любую ссылку (фон станет синим, текст белым)</p>
+
+  <hr>
+
+  <!-- ========================================== -->
+  <!-- ЧАСТЬ 4: Форма с полями text, email required, button -->
+  <!-- ========================================== -->
+  <h2>📝 Форма обратной связи</h2>
+  <form action="#" method="post">
+    <div class="form-group">
+      <label for="name">Имя (текстовое поле)</label>
+      <input type="text" id="name" name="name" placeholder="Введите ваше имя">
+    </div>
+    
+    <div class="form-group">
+      <label for="email">Email (обязательное поле) <span style="color:#ff9800;">*</span></label>
+      <input type="email" id="email" name="email" required placeholder="example@mail.ru">
+      <p style="font-size: 0.75rem; margin-top: 4px; color:#ff9800;">✨ <strong>input:required</strong> — оранжевая полоса слева</p>
+    </div>
+    
+    <button type="submit">Отправить</button>
+  </form>
+  <p style="font-size: 0.85rem; margin-top: 8px;">✨ <strong>input:focus</strong> — кликни в любое поле, появится синяя подсветка</p>
+
+</body>
+</html>

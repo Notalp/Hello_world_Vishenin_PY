@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Карточка товара — демонстрация CSS-приёмов</title>
+  <meta name="description" content="Карточка товара с использованием различных CSS-приёмов: селекторы, шорткаты, HEX, комментарии">
+  <meta name="author" content="Платон Янович">
+  
+  <style>
+    /* ========================================== */
+    /* МНОГОСТРОЧНЫЙ КОММЕНТАРИЙ                  */
+    /* Здесь описаны все стили для карточки товара */
+    /* ========================================== */
+
+    /* ПРАВИЛО 1: селектор по тегу body */
+    body {
+      font-family: "Segoe UI", "Roboto", "Arial", sans-serif; /* несколько шрифтов через запятую */
+      background: linear-gradient(135deg, #f0f2f5 0%, #e0e4e8 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    /* Однострочный комментарий: стили для карточки начинаются здесь */
+
+    /* ПРАВИЛО 2: селектор по классу .card */
+    .card {
+      background: white;
+      border-radius: 16px;
+      max-width: 350px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    /* Псевдокласс hover — дополнительно (не основное правило) */
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    /* ПРАВИЛО 3: несколько селекторов через запятую */
+    h1, h2, h3 {
+      font-weight: 600;
+      margin: 0 0 12px 0;
+      letter-spacing: -0.3px;
+    }
+
+    /* ПРАВИЛО 4: два класса на одном элементе (.card.product) */
+    .card.product {
+      border: 1px solid #e0e0dc;
+      overflow: hidden;
+    }
+
+    /* Стиль для заголовка внутри карточки */
+    .card h2 {
+      color: #2c3e50;
+      font-size: 1.5rem;
+      padding: 20px 20px 0 20px;
+    }
+
+    /* Стиль для описания */
+    .description {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.5;  /* число без единицы — line-height */
+      padding: 0 20px;
+      margin-bottom: 16px;
+    }
+
+    /* ПРАВИЛО 5: шорткат padding с 4 значениями */
+    .price {
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-size: 1.8rem;
+      font-weight: bold;
+      padding: 12px 20px 12px 20px;  /* верх, право, низ, лево */
+      margin: 0;
+      display: inline-block;
+      width: auto;
+    }
+
+    /* ПРАВИЛО 6: шорткат border */
+    .btn {
+      display: block;
+      width: calc(100% - 40px);
+      margin: 20px;
+      padding: 12px 20px;
+      border: none;  /* шорткат border */
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    /* ПРАВИЛО 7: два класса на элементе (.btn.btn-primary) */
+    .btn.btn-primary {
+      background: #4caf50;
+      color: white;
+    }
+
+    .btn.btn-primary:hover {
+      background: #2e7d32;
+      transform: scale(1.02);
+    }
+
+    /* ПРАВИЛО 8: цвет в HEX (уже использован выше, добавим отдельный элемент) */
+    .badge {
+      background: #ffd700;  /* HEX-цвет: золотой */
+      color: #2c3e50;
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      margin: 12px 20px 0 20px;
+    }
+
+    /* Дополнительное правило для демонстрации HEX и нескольких шрифтов */
+    .footer-note {
+      font-family: "Courier New", "Monaco", monospace; /* несколько шрифтов через запятую */
+      font-size: 0.7rem;
+      color: #999;
+      text-align: center;
+      padding: 12px;
+      border-top: 1px solid #eee;
+    }
+
+    /* Стили для блока с товаром */
+    .product-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+    }
+  </style>
+  /* Комментарий после закрывающего тега style — не повлияет на CSS */
+</head>
+<body>
+
+  <div class="card product">
+    <!-- Блок с иконкой-заглушкой товара -->
+    <div class="product-image">
+      🎧
+    </div>
+    
+    <h2>Беспроводные наушники</h2>
+    
+    <div class="badge">🔥 Хит продаж</div>
+    
+    <p class="description">
+      Высококачественные наушники с активным шумоподавлением, 
+      Bluetooth 5.3 и временем работы до 30 часов. Идеальны для 
+      работы, спорта и путешествий.
+    </p>
+    
+    <div class="price">2 490 ₽</div>
+    
+    <button class="btn btn-primary">Купить сейчас</button>
+    
+    <div class="footer-note">
+      * Бесплатная доставка от 3 000 ₽
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Обо мне — External CSS</title>
+  <meta name="description" content="Пример внешнего CSS: страница обо мне">
+  <meta name="author" content="Платон Янович">
+  
+  <!-- Подключение внешнего CSS-файла (тот же самый!) -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h1>📖 Обо мне</h1>
+
+  <div class="nav-links">
+    <a href="index.html">🏠 Главная</a>
+    <a href="about.html">📖 Обо мне</a>
+  </div>
+
+  <p>
+    Меня зовут <span class="highlight">Платон Янович</span>. Я студент, изучаю 
+    веб-разработку. Этот сайт создан в учебных целях, чтобы продемонстрировать 
+    работу <strong>external CSS</strong> — подключение единого файла стилей к 
+    нескольким HTML-страницам.
+  </p>
+
+  <p>
+    Обратите внимание: у этой страницы <span class="highlight">тот же дизайн</span>, 
+    что и у главной. Все стили (цвета, шрифты, отступы, рамки) пришли из одного файла 
+    <code>styles.css</code>. Чтобы убедиться, достаточно посмотреть на оформление 
+    ссылок, заголовков и выделенных фрагментов.
+  </p>
+
+  <p>
+    External CSS — это <span class="highlight">масштабируемое решение</span>. 
+    Если добавить на сайт 10, 100 или 1000 страниц, дизайн по-прежнему будет 
+    управляться из одного файла. Это экономит время и упрощает поддержку проекта.
+  </p>
+
+  <div class="nav-links">
+    <a href="index.html">← Вернуться на главную</a>
+  </div>
+
+</body>
+</html>

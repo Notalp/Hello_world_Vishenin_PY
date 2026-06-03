@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internal CSS — стили через тег style</title>
+  <meta name="description" content="Пример страницы, оформленной через Internal CSS (тег style в head)">
+  <meta name="author" content="Платон Янович">
+  
+  <!-- ========================================== -->
+  <!-- INTERNAL CSS: все стили перенесены сюда      -->
+  <!-- ========================================== -->
+  <style>
+    /* Общие стили для body */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 20px;
+      padding: 20px;
+      background: #f0f2f5;
+    }
+
+    /* Стили для заголовка h1 */
+    h1 {
+      color: #1a73e8;
+      font-size: 2.5rem;
+      text-align: center;
+      border-bottom: 3px solid #ffd700;
+      padding-bottom: 10px;
+    }
+
+    /* Общие стили для всех абзацев p */
+    p {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    /* Первый абзац — через класс (чтобы отличить от остальных) */
+    .p-first {
+      color: #2c3e50;
+      font-size: 1.1rem;
+      background: #e8f0fe;
+      border-left: 4px solid #1a73e8;
+    }
+
+    /* Второй абзац */
+    .p-second {
+      color: #d32f2f;
+      font-size: 1rem;
+      background: #ffeaea;
+      border: 1px solid #ffcdd2;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* Третий абзац */
+    .p-third {
+      color: #2e7d32;
+      font-size: 1rem;
+      background: #e8f5e9;
+      border: 1px solid #a5d6a7;
+      text-align: justify;
+    }
+
+    /* Стили для списка ul */
+    ul {
+      color: #3e2723;
+      font-size: 1rem;
+      background: #fff8e1;
+      padding: 15px 15px 15px 35px;
+      margin: 20px 0;
+      border: 1px solid #ffecb3;
+      border-radius: 10px;
+      list-style-type: square;
+    }
+
+    /* Стили для элементов списка li */
+    li {
+      margin: 8px 0;
+      padding: 5px;
+      border-bottom: 1px dashed #ffcc80;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* Убираем нижнюю рамку у последнего li */
+    li:last-child {
+      border-bottom: none;
+    }
+
+    /* Стиль для кода внутри текста */
+    code {
+      background: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    /* ========================================== */
+    /* НОВОЕ ПРАВИЛО: a:hover — при наведении на ссылку */
+    /* ========================================== */
+    a {
+      color: #1a73e8;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: red;
+      text-decoration: underline;
+    }
+
+    /* Стиль для блока-примечания */
+    .note {
+      background: #1a1a2e;
+      color: #ffd700;
+      padding: 12px;
+      text-align: center;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-size: 0.85rem;
+    }
+
+    .note a {
+      color: #ffd700;
+    }
+
+    .note a:hover {
+      color: #ff6347;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ЗАГОЛОВОК H1 -->
+  <h1>🎨 Эксперимент с Internal CSS</h1>
+
+  <!-- ПЕРВЫЙ АБЗАЦ с классом p-first -->
+  <p class="p-first">
+    Этот абзац оформлен через Internal CSS (тег style в head). У него заданы цвет текста, размер шрифта, фоновый цвет, внутренние отступы и рамка слева. 
+    Internal CSS удобен для одностраничных сайтов и прототипов.
+  </p>
+
+  <!-- ВТОРОЙ АБЗАЦ с классом p-second -->
+  <p class="p-second">
+    ⚡ Это второй абзац. Он красного цвета, на светло-розовом фоне, с рамкой и скруглёнными углами. 
+    Шрифт здесь — моноширинный (Courier New). Internal CSS позволяет переиспользовать стили на одной странице.
+  </p>
+
+  <!-- ТРЕТИЙ АБЗАЦ с классом p-third -->
+  <p class="p-third">
+    🌿 Третий абзац: зелёный текст на зелёном фоне, выравнивание по ширине (text-align: justify). 
+    Internal CSS — хороший компромисс между inline и external: код чище, чем inline, но всё ещё в одном файле.
+  </p>
+
+  <!-- СПИСОК UL с минимум 3 LI -->
+  <ul>
+    <li>📌 Internal CSS задаётся через тег <code>&lt;style&gt;</code> в разделе <code>&lt;head&gt;</code></li>
+    <li>🎯 Стили применяются ко всем элементам на странице через селекторы (по тегам, классам, id)</li>
+    <li>⚠️ При переходе на другую страницу стили нужно дублировать или выносить в external CSS</li>
+    <li>🚀 Для многостраничных сайтов лучше использовать внешний файл <code>.css</code></li>
+  </ul>
+
+  <!-- ДОБАВЛЕНА ССЫЛКА для демонстрации a:hover -->
+  <div style="text-align: center; margin: 20px 0;">
+    <a href="#" id="demo-link">🔗 Наведи на меня мышкой — цвет изменится на красный (hover эффект)</a>
+  </div>
+
+  <!-- БЛОК-ПРИМЕЧАНИЕ с дополнительной ссылкой -->
+  <div class="note">
+    💡 Вся страница оформлена через Internal CSS в теге <code>&lt;style&gt;</code>. 
+    <a href="#">Проверь hover на этой ссылке тоже</a> — цвет меняется при наведении.
+  </div>
+
+</body>
+</html>

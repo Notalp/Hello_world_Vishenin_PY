@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Базовые селекторы CSS — эксперимент</title>
+  <meta name="description" content="Демонстрация различных типов селекторов: универсальный, по тегу, по классу, по id, группировка, комбинации классов">
+  <meta name="author" content="Платон Янович">
+  
+  <style>
+    /* ========================================== */
+    /* ПРАВИЛО 1: Универсальный селектор *        */
+    /* ========================================== */
+    * {
+      box-sizing: border-box;  /* padding и border не увеличивают ширину */
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 2: Селектор по тегу (body)         */
+    /* ========================================== */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f2f5 0%, #e0e4e8 100%);
+      line-height: 1.6;
+      padding: 40px 20px;
+      color: #2c3e50;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 3: Селектор по тегу (p)            */
+    /* ========================================== */
+    p {
+      margin-bottom: 16px;
+      font-size: 1rem;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 4: Селектор по классу (.lead)      */
+    /* ========================================== */
+    .lead {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #1a73e8;
+      border-left: 4px solid #ffd700;
+      padding-left: 16px;
+      background: #e8f0fe;
+      padding: 12px 20px;
+      border-radius: 8px;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 5: Селектор по id (#title)         */
+    /* ========================================== */
+    #title {
+      color: #1a73e8;
+      font-size: 2.2rem;
+      text-align: center;
+      border-bottom: 3px solid #ffd700;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 6: Группировка через запятую       */
+    /* ========================================== */
+    h1, h2, h3 {
+      font-weight: 600;
+      margin-top: 0;
+    }
+
+    /* Дополнительная группировка для контейнера */
+    .container, .demo-section {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 7: Два класса слитно (.box.highlight) */
+    /* ========================================== */
+    .box {
+      background: #fafaf7;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px 20px;
+      margin-bottom: 12px;
+      transition: all 0.2s;
+    }
+
+    .box.highlight {
+      background: #e8f5e9;
+      border-left: 4px solid #4caf50;
+      font-weight: 500;
+    }
+
+    /* ========================================== */
+    /* ПРАВИЛО 8: Три класса слитно (.box.highlight.large) */
+    /* ========================================== */
+    .box.highlight.large {
+      font-size: 1.2rem;
+      padding: 20px 24px;
+      background: #c8e6c9;
+      border-left-width: 6px;
+      border-left-color: #2e7d32;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Дополнительные стили для демонстрации */
+    .instruction {
+      background: #fff8e1;
+      border-left: 4px solid #ffc107;
+      padding: 16px 20px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+    }
+
+    .instruction code {
+      background: #333;
+      color: #ffd700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    hr {
+      margin: 20px 0;
+      border-color: #eee;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #ddd;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      margin-right: 8px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="title">🎯 Базовые селекторы CSS</h1>
+
+    <div class="instruction">
+      <p><strong>🔍 Как проверить:</strong> Откройте <code>F12 → Elements</code>, выберите любой блок с классом <code>box</code>, в правой панели <strong>Styles</strong> посмотрите, какие правила применились.</p>
+      <p><strong>📌 Селекторы в этом файле:</strong> <code>*</code> (универсальный), <code>body</code> (тег), <code>.lead</code> (класс), <code>#title</code> (id), группировка <code>h1, h2, h3</code>, <code>.box.highlight</code> (два класса), <code>.box.highlight.large</code> (три класса).</p>
+    </div>
+
+    <hr>
+
+    <!-- Два абзаца: один без класса, другой с class="lead" -->
+    <h2>📝 Абзацы</h2>
+    <p>Это обычный абзац <strong>без класса</strong>. К нему применяются только стили от селектора по тегу <code>p</code> и универсальные от <code>*</code>.</p>
+    
+    <p class="lead">
+      <span class="badge">.lead</span>
+      Это абзац с классом <strong>lead</strong>. К нему применяются стили от селектора по классу <code>.lead</code> (синий акцент, рамка слева, фон), а также от селектора по тегу <code>p</code>.
+    </p>
+
+    <hr>
+
+    <!-- Три блока с классами box, box highlight, box highlight large -->
+    <h2>📦 Блоки с комбинациями классов</h2>
+
+    <div class="box">
+      <span class="badge">.box</span>
+      <strong>Блок 1</strong> — только класс <code>box</code>. К нему применяются стили от <code>.box</code> (рамка, фон, отступы).
+    </div>
+
+    <div class="box highlight">
+      <span class="badge">.box.highlight</span>
+      <strong>Блок 2</strong> — классы <code>box</code> и <code>highlight</code> (два класса слитно). К нему применяются стили от <code>.box</code> <strong>и</strong> от <code>.box.highlight</code> (зелёный фон, левая зелёная полоса).
+    </div>
+
+    <div class="box highlight large">
+      <span class="badge">.box.highlight.large</span>
+      <strong>Блок 3</strong> — классы <code>box</code>, <code>highlight</code> и <code>large</code> (три класса слитно). К нему применяются стили от <code>.box</code> + <code>.box.highlight</code> + <code>.box.highlight.large</code> (увеличенный шрифт, большие отступы, усиленная тень).
+    </div>
+
+    <hr>
+
+    <div class="demo-section">
+      <h3>📊 Итог: что мы использовали</h3>
+      <ul>
+        <li><code>*</code> — универсальный селектор (у всех элементов <code>box-sizing: border-box</code>)</li>
+        <li><code>body</code> — селектор по тегу</li>
+        <li><code>p</code> — селектор по тегу</li>
+        <li><code>.lead</code> — селектор по классу</li>
+        <li><code>#title</code> — селектор по id</li>
+        <li><code>h1, h2, h3</code> — группировка через запятую</li>
+        <li><code>.box.highlight</code> — два класса слитно (стили применяются к элементам, у которых есть <strong>оба</strong> класса)</li>
+        <li><code>.box.highlight.large</code> — три класса слитно (стили применяются только если есть <strong>все три</strong> класса)</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

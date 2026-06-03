@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CLS-эксперимент — почему важны width и height у картинок</title>
+  <meta name="description" content="Демонстрация Cumulative Layout Shift: сравнение поведения страницы с картинкой без атрибутов размера и с width/height">
+  <meta name="author" content="Студент">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f0f2f5;
+    }
+    h1 {
+      text-align: center;
+      color: #1a73e8;
+    }
+    h2 {
+      background-color: #e8f0fe;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 30px;
+    }
+    .version-a {
+      background-color: #fff3e0;
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 5px solid #ff9800;
+    }
+    .version-b {
+      background-color: #e8f5e9;
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 5px solid #4caf50;
+    }
+    hr {
+      margin: 40px 0;
+      border: 2px solid #ccc;
+    }
+    .instruction {
+      background: #1a1a2e;
+      color: #eee;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+    .instruction h3 {
+      margin-top: 0;
+      color: #ffd700;
+    }
+    .instruction code {
+      background: #333;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    .note {
+      background: #fffacd;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 15px 0;
+      font-size: 0.95em;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    p {
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧪 Эксперимент: Cumulative Layout Shift (CLS)</h1>
+
+  <div class="instruction">
+    <h3>🔬 Инструкция для проведения эксперимента</h3>
+    <ol>
+      <li>Нажмите <strong>F12</strong> → откройте вкладку <strong>Network</strong></li>
+      <li>В выпадающем списке <strong>Throttling</strong> выберите <strong>Slow 3G</strong> (эмулирует медленный интернет)</li>
+      <li>Поставьте галочку <strong>Disable cache</strong> (отключить кэш)</li>
+      <li>Обновите страницу (<strong>Ctrl+Shift+R</strong>) и внимательно наблюдайте за текстом <strong>НИЖЕ</strong> каждой картинки</li>
+      <li><strong>Ожидаемый результат:</strong>
+        <ul>
+          <li>🔴 <strong>Версия А (без width/height):</strong> текст под картинкой "прыгает" вниз, когда картинка догружается</li>
+          <li>✅ <strong>Версия Б (с width/height):</strong> текст стоит на месте, картинка появляется плавно</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <hr>
+
+  <!-- ========================================== -->
+  <!-- ВЕРСИЯ А: БЕЗ АТРИБУТОВ WIDTH / HEIGHT      -->
+  <!-- ========================================== -->
+
+  <div class="version-a">
+    <h2>❌ Версия А: Картинка БЕЗ атрибутов width и height</h2>
+    <p><em>⚠️ Ожидайте "прыжок" контента при загрузке картинки</em></p>
+
+    <p><strong>📝 Абзац 1:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+    <p><strong>📝 Абзац 2:</strong> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+    <p><strong>📝 Абзац 3:</strong> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati.</p>
+    <p><strong>📝 Абзац 4:</strong> Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+    <p><strong>📝 Абзац 5:</strong> Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur.</p>
+
+    <!-- КАРТИНКА БЕЗ width/height — именно здесь произойдёт CLS -->
+    <img src="images/large-photo.jpg"
+         alt="Большое тяжёлое изображение — без атрибутов размера">
+
+    <p><strong>📝 Абзац 6:</strong> Наблюдайте за этим текстом! При загрузке картинки он должен "прыгнуть" вниз, потому что браузер не знал заранее, сколько места зарезервировать под изображение.</p>
+    <p><strong>📝 Абзац 7:</strong> Это явление называется Cumulative Layout Shift (CLS). Google использует его как один из показателей качества сайта. Плохой CLS ухудшает UX и ранжирование.</p>
+    <p><strong>📝 Абзац 8:</strong> Представьте, что вы уже начали читать этот абзац, но в этот момент картинка догрузилась и сдвинула текст вниз — вы потеряли место чтения. Это раздражает пользователей.</p>
+    <p><strong>📝 Абзац 9:</strong> Особенно сильно проблема проявляется на медленном соединении (Slow 3G) и на мобильных устройствах, где картинки загружаются дольше.</p>
+    <p><strong>📝 Абзац 10:</strong> Решение — всегда указывать width и height для изображений, даже если потом вы меняете размер через CSS. Об этом — в Версии Б ниже.</p>
+  </div>
+
+  <hr>
+
+  <!-- ========================================== -->
+  <!-- ВЕРСИЯ Б: С АТРИБУТАМИ WIDTH / HEIGHT       -->
+  <!-- ========================================== -->
+
+  <div class="version-b">
+    <h2>✅ Версия Б: Картинка С атрибутами width и height</h2>
+    <p><em>✨ Текст должен оставаться на месте, картинка "вырастает" плавно без прыжков</em></p>
+
+    <p><strong>📝 Абзац 1:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+    <p><strong>📝 Абзац 2:</strong> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+    <p><strong>📝 Абзац 3:</strong> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati.</p>
+    <p><strong>📝 Абзац 4:</strong> Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+    <p><strong>📝 Абзац 5:</strong> Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur.</p>
+
+    <!-- КАРТИНКА С width/height — место зарезервировано заранее, CLS не будет -->
+    <!-- Файл 1920×1280, отображаем 800×533 (пропорции сохранены) -->
+    <img src="images/large-photo.jpg"
+         alt="Большое тяжёлое изображение — С атрибутами размера"
+         width="800"
+         height="533"
+         loading="eager">
+
+    <p><strong>📝 Абзац 6:</strong> Заметили разницу? Этот текст НЕ должен сдвинуться при загрузке картинки. Потому что браузер заранее зарезервировал правильное место.</p>
+    <p><strong>📝 Абзац 7:</strong> Атрибуты width и height сообщают браузеру точные размеры изображения ДО того, как файл загрузится. Браузер оставляет "дырку" нужного размера.</p>
+    <p><strong>📝 Абзац 8:</strong> Даже если вы через CSS задаёте max-width: 100% для адаптивности, атрибуты width/height в HTML всё равно нужны — они задают пропорции (соотношение сторон).</p>
+    <p><strong>📝 Абзац 9:</strong> Современная формула: в HTML указываем фактические размеры файла (width="1920" height="1280"), а в CSS — желаемый размер отображения (max-width: 100%; height: auto;).</p>
+    <p><strong>📝 Абзац 10:</strong> Это один из важнейших принципов Core Web Vitals — метрик, которые Google использует для ранжирования сайтов. Хороший CLS — это здоровый сайт!</p>
+  </div>
+
+  <hr>
+
+  <div class="note">
+    <strong>📌 Ваши параметры изображения:</strong>
+    <ul>
+      <li>Файл: <code>images/large-photo.jpg</code></li>
+      <li>Оригинальный размер: <strong>1920 × 1280</strong> (соотношение сторон 3:2)</li>
+      <li>В Версии Б отображается с <code>width="800" height="533"</code> — пропорции сохранены ✅</li>
+    </ul>
+  </div>
+
+  <p style="text-align: center; margin-top: 30px;">
+    <a href="#">🔝 Наверх страницы</a>
+  </p>
+
+</body>
+</html>

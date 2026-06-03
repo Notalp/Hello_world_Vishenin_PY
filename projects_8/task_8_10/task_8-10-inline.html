@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inline-стили — эксперимент с оформлением</title>
+  <meta name="description" content="Пример страницы, оформленной только через inline-стили (атрибут style)">
+  <meta name="author" content="Платон Янович">
+</head>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; padding: 20px; background: #f0f2f5;">
+
+  <!-- ЗАГОЛОВОК H1 с 3 inline-свойствами -->
+  <h1 style="color: #1a73e8; font-size: 2.5rem; text-align: center; border-bottom: 3px solid #ffd700; padding-bottom: 10px;">
+    🎨 Эксперимент с Inline-стилями
+  </h1>
+
+  <!-- ПЕРВЫЙ АБЗАЦ с 3 inline-свойствами -->
+  <p style="color: #2c3e50; font-size: 1.1rem; background: #e8f0fe; padding: 15px; border-radius: 8px; border-left: 4px solid #1a73e8;">
+    Этот абзац оформлен исключительно через inline-стили. У него заданы цвет текста, размер шрифта, фоновый цвет, внутренние отступы и рамка слева. 
+    Inline-стили имеют самый высокий приоритет и перебивают любые внешние и внутренние CSS-правила.
+  </p>
+
+  <!-- ВТОРОЙ АБЗАЦ с 3 inline-свойствами (фактически больше) -->
+  <p style="color: #d32f2f; font-size: 1rem; background: #ffeaea; padding: 12px; margin: 15px 0; border: 1px solid #ffcdd2; border-radius: 6px; font-family: 'Courier New', monospace;">
+    ⚡ Это второй абзац. Он красного цвета, на светло-розовом фоне, с рамкой и скруглёнными углами. 
+    Шрифт здесь — моноширинный (Courier New). Inline-стили полезны для быстрого тестирования, но в реальных проектах их избегают.
+  </p>
+
+  <!-- ТРЕТИЙ АБЗАЦ с 3 inline-свойствами -->
+  <p style="color: #2e7d32; font-size: 1rem; background: #e8f5e9; padding: 12px; border: 1px solid #a5d6a7; border-radius: 8px; text-align: justify;">
+    🌿 Третий абзац: зелёный текст на зелёном фоне, выравнивание по ширине (text-align: justify). 
+    Inline-стили нарушают принцип разделения содержания и оформления, но в учебных целях помогают понять, как работают приоритеты CSS.
+  </p>
+
+  <!-- СПИСОК UL с минимум 3 LI, на самом UL и на LI — свои inline-стили -->
+  <ul style="color: #3e2723; font-size: 1rem; background: #fff8e1; padding: 15px 15px 15px 35px; margin: 20px 0; border: 1px solid #ffecb3; border-radius: 10px; list-style-type: square;">
+    <li style="margin: 8px 0; padding: 5px; border-bottom: 1px dashed #ffcc80; font-family: 'Segoe UI', sans-serif;">
+      📌 Inline-стили задаются через атрибут <code style="background: #eee; padding: 2px 4px;">style</code>
+    </li>
+    <li style="margin: 8px 0; padding: 5px; border-bottom: 1px dashed #ffcc80; font-family: 'Segoe UI', sans-serif;">
+      🎯 У каждого элемента может быть своё уникальное оформление
+    </li>
+    <li style="margin: 8px 0; padding: 5px; border-bottom: 1px dashed #ffcc80; font-family: 'Segoe UI', sans-serif;">
+      ⚠️ Но при изменении дизайна пришлось бы править каждый элемент вручную
+    </li>
+    <li style="margin: 8px 0; padding: 5px; border-bottom: 1px dashed #ffcc80; font-family: 'Segoe UI', sans-serif;">
+      🚀 Для реальных сайтов используйте external CSS или тег <code style="background: #eee; padding: 2px 4px;">&lt;style&gt;</code>
+    </li>
+  </ul>
+
+  <!-- ДОПОЛНИТЕЛЬНЫЙ БЛОК-ПРИМЕЧАНИЕ (не по заданию, но для завершённости) -->
+  <div style="background: #1a1a2e; color: #ffd700; padding: 12px; text-align: center; border-radius: 8px; margin-top: 20px; font-size: 0.85rem;">
+    💡 Вся страница оформлена через inline-стили. У каждого элемента (h1, p, ul, li) минимум 3 CSS-свойства.
+  </div>
+
+</body>
+</html>

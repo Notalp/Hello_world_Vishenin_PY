@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Фотогалерея — Мой день</title>
+  <meta name="description" content="Фотогалерея с демонстрацией lazy loading: первая картинка загружается сразу, остальные — при прокрутке">
+  <meta name="author" content="Студент">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    figure {
+      background: white;
+      margin: 20px 0;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    figcaption {
+      margin-top: 10px;
+      font-style: italic;
+      color: #555;
+    }
+    img {
+      border-radius: 8px;
+      max-width: 100%;
+      height: auto;
+    }
+    hr {
+      margin: 30px 0;
+    }
+    .instruction {
+      background: #e8f0fe;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📷 Мой день в фотографиях</h1>
+
+  <div class="instruction">
+    <p><strong>🔍 Инструкция для проверки lazy loading:</strong></p>
+    <ol>
+      <li>Откройте <strong>F12 → вкладка Network</strong></li>
+      <li>Обновите страницу с <strong>Ctrl+Shift+R</strong> (полная перезагрузка без кэша)</li>
+      <li>Обратите внимание: первая картинка загрузилась сразу, остальные — <strong>только когда вы докрутите до них</strong></li>
+    </ol>
+  </div>
+
+  <hr>
+
+  <!-- Фото 1: loading="eager" — загружается сразу -->
+  <!-- Оригинал 338×450 → отображаем 600×799 -->
+  <figure>
+    <img src="images/morning-coffee.jpg"
+         alt="Утренний кофе с круассаном"
+         width="600"
+         height="799"
+         loading="eager">
+    <figcaption>☕ 8:00 — Утренний кофе с круассаном. Начало дня с правильного завтрака.</figcaption>
+  </figure>
+
+  <!-- Фото 2: loading="lazy" — загрузится при прокрутке -->
+  <!-- Оригинал 2048×1364 → отображаем 600×400 -->
+  <figure>
+    <img src="images/sunny-walk.jpg"
+         alt="Прогулка по парку в солнечную погоду"
+         width="600"
+         height="400"
+         loading="lazy">
+    <figcaption>🌳 10:30 — Прогулка по парку. Погода отличная, птицы поют.</figcaption>
+  </figure>
+
+  <!-- Фото 3: loading="lazy" — загрузится при прокрутке -->
+  <!-- Оригинал 612×408 → отображаем 600×400 -->
+  <figure>
+    <img src="images/work-study.jpg"
+         alt="Рабочий стол с ноутбуком, книгами и чашкой чая"
+         width="600"
+         height="400"
+         loading="lazy">
+    <figcaption>💻 13:00 — Работа и учёба. Верстаю новый проект на HTML/CSS.</figcaption>
+  </figure>
+
+  <!-- Фото 4: loading="lazy" — загрузится при прокрутке -->
+  <!-- Оригинал 900×900 (квадрат) → отображаем 600×600 -->
+  <figure>
+    <img src="images/lunch-dish.jpg"
+         alt="Обед — вкусное горячее блюдо"
+         width="600"
+         height="600"
+         loading="lazy">
+    <figcaption>🍲 15:00 — Обед. Томатный суп и свежий хлеб.</figcaption>
+  </figure>
+
+  <!-- Фото 5: КАРТИНКА-ССЫЛКА — открывает полный размер в новой вкладке + loading="lazy" -->
+  <!-- Оригинал 612×359 → отображаем 600×352 -->
+  <figure>
+    <a href="images/sunset-photo.jpg"
+       target="_blank"
+       rel="noopener noreferrer"
+       title="Открыть фото в полном размере">
+      <img src="images/sunset-photo.jpg"
+           alt="Закат над городом — открывается в полном размере по клику"
+           width="600"
+           height="352"
+           loading="lazy">
+    </a>
+    <figcaption>🌇 19:30 — Закат над городом. <strong>Кликните на фото</strong>, чтобы открыть в полном размере.</figcaption>
+  </figure>
+
+  <!-- Фото 6: loading="lazy" — загрузится при прокрутке -->
+  <!-- Оригинал 1859×980 → отображаем 600×316 -->
+  <figure>
+    <img src="images/evening-reading.jpg"
+         alt="Вечернее чтение книги в мягком свете лампы"
+         width="600"
+         height="316"
+         loading="lazy">
+    <figcaption>📖 22:00 — Вечернее чтение. Лучшее завершение дня.</figcaption>
+  </figure>
+
+  <hr>
+
+  <p style="text-align: center;">
+    <a href="#">🔝 Наверх страницы</a>
+  </p>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Главная страница — External CSS</title>
+  <meta name="description" content="Пример внешнего CSS: главная страница">
+  <meta name="author" content="Платон Янович">
+  
+  <!-- Подключение внешнего CSS-файла -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h1>🌟 Добро пожаловать на главную страницу</h1>
+
+  <div class="nav-links">
+    <a href="index.html">🏠 Главная</a>
+    <a href="about.html">📖 Обо мне</a>
+  </div>
+
+  <p>
+    Это <span class="highlight">главная страница</span> сайта, оформленного через 
+    <strong>external CSS</strong>. Все стили вынесены в отдельный файл 
+    <code>styles.css</code>, который подключён к обеим страницам.
+  </p>
+
+  <p>
+    External CSS — это стандарт индустрии. Один файл стилей обслуживает 
+    <span class="highlight">весь сайт целиком</span>. Чтобы изменить дизайн, 
+    достаточно отредактировать один файл — изменения применятся ко всем страницам 
+    одновременно.
+  </p>
+
+  <p>
+    Преимущества внешнего CSS: 
+    <span class="highlight">кэширование</span> (файл загружается один раз), 
+    <span class="highlight">чистый HTML</span> (без стилей), 
+    <span class="highlight">удобство поддержки</span> и 
+    <span class="highlight">единый стиль</span> для всего сайта.
+  </p>
+
+  <div class="nav-links">
+    <a href="about.html">📖 Перейти на страницу "Обо мне" →</a>
+  </div>
+
+</body>
+</html>
