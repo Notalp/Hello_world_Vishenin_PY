@@ -1,3 +1,0 @@
-SELECT product_id, COUNT(*) AS supplier_count
-FROM suppliers
-GROUP BY product_id;
